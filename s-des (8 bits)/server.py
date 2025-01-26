@@ -17,12 +17,13 @@ def left_circular_shift(arr, x):
         arr[-1]=b
     return arr
 
-def generate_key(k1, p10, p8, x):
-    new_key=[]
-    for i in p10:
-        new_key.append(k1[i-1])
-    l=new_key[:5]
-    r=new_key[5:]
+def perm_10(k1, p10):
+    new_key=[k1[i-1] for i in p10]
+    return new_key
+
+def generate_key(k, p8, x):
+    l=k[:5]
+    r=k[5:]
     l=left_circular_shift(l, x)
     r=left_circular_shift(r, x)
     new_key=l+r
@@ -32,24 +33,11 @@ def generate_key(k1, p10, p8, x):
     return l+r, k1
 
 
-def generate_key2(k2, p8, x):
-    l=k2[:5]
-    r=k2[5:]
-    l=left_circular_shift(l, x)
-    r=left_circular_shift(r, x)
-    new_key=l+r
-    k1=[]
-    for i in p8:
-        k1.append(new_key[i-1])
-    return k1
-
 p10= [3,5,2,7,4,10,1,9,8,6]
 p8= [6, 3, 7, 4, 8, 5, 10, 9]
-
-generated_k1, r1_key = generate_key(k1, p10, p8, 1)
-r2_key = generate_key2(generated_k1, p8, 2)
-
-
+new_key = perm_10(k1, p10)
+generated_k1, r1_key = generate_key(new_key, p8, 1)
+a, r2_key = generate_key(generated_k1, p8, 2)
 
 plaintext = [ 0, 0, 1, 0, 1, 0, 0, 0]
 ip = [2, 6, 3, 1, 4, 8, 5, 7]
