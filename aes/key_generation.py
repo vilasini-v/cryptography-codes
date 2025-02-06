@@ -49,10 +49,11 @@ def key_gen(key, constant):
     return w
 
 all_keys = []
+all_keys.append(key)
 def key_rounds(key, constant):
     for i in range(10):
         key = key_gen(key, [constant[i],'00', '00', '00'])
-        print(key)
+        print('Key ', i+1, ': ',key)
         all_keys.append(key)
 key_rounds(key, constants)
 

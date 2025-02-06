@@ -39,3 +39,10 @@ key = ['54', '68', '61','74','73', '20', '6D', '79', '20', '4B', '75', '6E', '67
 constants = ['01', '02', '04', '08', '10', '20', '40', '80', '1B', '36' ]
 def keys():
     return sbox, sboxInv, key, constants
+
+plaintext = ['54', '77', '6F', '20', '4F', '6E', '65', '20', '4E', '69', '6E', '65', '20', '54', '77', '6F']
+mixcolumns = [[2, 3, 1, 1],[1,2,3,1], [1,1,2,3],[3,1,1,2]]
+
+
+def text():
+    return plaintext, sbox, mixcolumns, key
