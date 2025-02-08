@@ -51,6 +51,7 @@ def key_gen(key, constant):
 all_keys = []
 all_keys.append(key)
 def key_rounds(key, constant):
+    print("Original Key: ", ''.join([chr(int(i,16)) for i in key]))
     for i in range(10):
         key = key_gen(key, [constant[i],'00', '00', '00'])
         print('Key ', i+1, ': ',key)

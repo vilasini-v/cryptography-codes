@@ -42,7 +42,9 @@ def keys():
 
 plaintext = ['54', '77', '6F', '20', '4F', '6E', '65', '20', '4E', '69', '6E', '65', '20', '54', '77', '6F']
 mixcolumns = [[2, 3, 1, 1],[1,2,3,1], [1,1,2,3],[3,1,1,2]]
+invMixColumns = ['e','b','d', '9','9', 'e','b','d','d','9', 'e','b','b','d','9', 'e']
 
-
+def decrypt():
+    return invMixColumns, sboxInv, 
 def text():
     return plaintext, sbox, mixcolumns, key

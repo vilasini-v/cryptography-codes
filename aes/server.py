@@ -70,9 +70,6 @@ def mixColumns(state, mixer):
             result[i][j] = hex(result[i][j])[2:].upper()
     return result[0]+result[1]+result[2]+result[3]
 
-import key_generation
-
-all_keys = key_generation.send_keys()
 #finally - the actual rounds:
 def encryption(all_keys, plaintext, sbox, mixer):
     #round 0:
@@ -80,7 +77,6 @@ def encryption(all_keys, plaintext, sbox, mixer):
     print('Round 0 : ', new_state)
 
     #round 1 to to 9
-
     for i in range(1,10):
         new_state = subBytes(new_state, sbox)
         new_state = shift_rows(new_state)
@@ -89,15 +85,17 @@ def encryption(all_keys, plaintext, sbox, mixer):
         print('Round',i, ': ', new_state)
     
     new_state = subBytes(new_state, sbox)
-    new_state = shift_rows(new_state)
     new_state = xor_16byte_lists(all_keys[10], new_state)
     print('Round 10 : ', new_state)
     return new_state
 
-encrypted_list = encryption(all_keys, plaintext, sbox, mixer)
-
+import key_generation
 while True:
     c,addr = s.accept()
+    print("Original Message: ", ''.join([chr(int(i,16)) for i in plaintext]))
+    all_keys = key_generation.send_keys()
+    encrypted_list = encryption(all_keys, plaintext, sbox, mixer)
+    print("Encrypted Message: ", ''.join([chr(int(i,16)) for i in encrypted_list]))
     c.send(' '.join(encrypted_list).encode())
     s.close()
     break
