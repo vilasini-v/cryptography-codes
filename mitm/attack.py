@@ -2,6 +2,7 @@
 p = 19
 g = 10
 
+import time
 
 c = 4
 d = 12
@@ -27,6 +28,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         print(f"Sending public key by attacker to Alice: {pua}")
         connection.sendall(str(pua).encode())
         
+        time.sleep(5)
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as c_socket:
             c_socket.connect(('localhost', 65433))
             print(f"Sending public key by attacker to Bob: {pub}")
