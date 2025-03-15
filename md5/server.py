@@ -3,7 +3,7 @@ import functions
 import data 
 
 server = socket.socket()
-server.bind(("0.0.0.0", 12345))  # Listen on all interfaces, port 12345
+server.bind(("0.0.0.0", 12345))
 server.listen(1)
 print("Server listening on port 12345...")
 
